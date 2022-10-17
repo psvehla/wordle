@@ -2,24 +2,15 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"strings"
+
+	"github.com/psvehla/wordle/internal/analyse"
+	"github.com/psvehla/wordle/internal/words"
 )
 
 func main() {
-	words, err := os.ReadFile("assets/word-list.csv")
-	if err != nil {
-		panic(err)
-	}
-	wordlist := strings.Split(string(words), ",")
-	fmt.Println(wordlist)
-	fmt.Println(len(wordlist))
-
-	wordles, err := os.ReadFile("assets/wordle-list.txt")
-	if err != nil {
-		panic(err)
-	}
-	wordlelist := strings.Fields(string(wordles))
-	fmt.Println(wordlelist)
-	fmt.Println(len(wordlelist))
+	wordlist, wordlelist := words.GetWords()
+	fmt.Println("Corpus of all 5 letter words:", len(wordlist))
+	fmt.Println("Percentage of double letter words:", analyse.NumDoubleLetters(wordlist)*100/len(wordlist))
+	fmt.Println("Corpus of words used by Wordle:", len(wordlelist))
+	fmt.Println("Percentage of double letter words:", analyse.NumDoubleLetters(wordlelist)*100/len(wordlelist))
 }

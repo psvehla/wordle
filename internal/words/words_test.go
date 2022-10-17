@@ -10,11 +10,11 @@ func TestGetWords(t *testing.T) {
 		want  int
 		want1 int
 	}{
-		// {
-		// 	name:  "test",
-		// 	want:  12972,
-		// 	want1: 2309,
-		// },
+		{
+			name:  "test",
+			want:  12972,
+			want1: 2309,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
